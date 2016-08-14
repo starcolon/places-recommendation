@@ -1,5 +1,6 @@
 module Places.Core (
   readInput
+, readInputs
 ) where
 
 import Text.ParserCombinators.Parsec
@@ -13,6 +14,12 @@ import Places.Class.Data
 readInput :: String -> IO ([Place])
 readInput path = do
   places <- Csv.readPlaceCSV path
+  return places
+
+-- | Read in multiple input CSV files
+readInputs :: [String] -> IO ([Place])
+readInputs paths = do
+  places <- Csv.readPlaceCSVs paths
   return places
 
 

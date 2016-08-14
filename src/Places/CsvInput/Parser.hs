@@ -49,4 +49,12 @@ readPlaceCSV path = do
       ; places' = filterValid places
     }
     in return places'
+
+readPlaceCSVs :: [String] -> IO ([Place])
+readPlaceCSVs paths = do
+  csv <- readCSVs paths
+  let { places  = map toPlace csv
+      ; places' = filterValid places
+    }
+    in return places'
   
