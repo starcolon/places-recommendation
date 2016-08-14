@@ -17,6 +17,19 @@ readCSV path = do
     Right (n:ns) -> return ns
 
 
+-- | Read multiple CSV files and merge the results
+-- into one single list of [String]
+readCSVs :: [String] -> IO ([[String]])
+readCSVs paths = do
+  csvs <- sequence $ map readCSV paths
+  let csv = concat csvs
+  return csv
+
+
+mergeCSVs :: [IO [[String]]] -> IO [[String]]
+mergeCSVs inputs = do
+  error "HHH"
+
 -- | Convert a list of values to a [Place] data
 toPlace :: [String] -> Maybe Place
 toPlace ns = PlaceData.fromList ns
