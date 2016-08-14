@@ -14,3 +14,4 @@ readInput :: String -> IO ([Place])
 readInput path = do
   places <- Csv.readPlaceCSV path
   return places
+

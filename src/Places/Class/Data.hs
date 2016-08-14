@@ -36,7 +36,7 @@ showPlace p = let { name'     = name p
                   ; location' = location p
                   ; cate'     = subCategory p
                   ; line      = [name', "(", cate', ") in ", location']
-              } in unlines line
+              } in intercalate " " line
 
 fromList :: [String] -> Place
 fromList ns = 
