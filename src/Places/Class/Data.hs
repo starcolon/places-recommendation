@@ -6,6 +6,7 @@ module Places.Class.Data (
 
 ) where
 
+
 -- address,category,id,lat,lng,location,
 -- name,originalId,polarity,subCategory,
 -- details,reviews
@@ -36,18 +37,20 @@ showPlace p = let { name'     = name p
               } in unlines line
 
 fromList :: [String] -> Place
-fromList [a1:a2:a3:a4:a5:a6:a7:a8:a9:a10:a11:a12] = 
-  Place { address     = a1
-        , category    = a2
-        , _id         = read a3 :: Integer
-        , lat         = read a4 :: Double
-        , lng         = read a5 :: Double
-        , location    = a6
-        , name        = a7
-        , originalId  = read a8 :: Integer
-        , polarity    = a9
-        , subCategory = a10
-        , details     = a11
-        , reviews     = a12
+fromList ns = 
+  Place { address     = ns !! 0
+        , category    = ns !! 1
+        , _id         = read (ns !! 2) :: Integer
+        , lat         = read (ns !! 3) :: Double
+        , lng         = read (ns !! 4) :: Double
+        , location    = ns !! 5
+        , name        = ns !! 6
+        , originalId  = read (ns !! 7) :: Integer
+        , polarity    = ns !! 8
+        , subCategory = ns !! 9
+        , details     = ns !! 10
+        , reviews     = ns !! 11
   }
+
+
 

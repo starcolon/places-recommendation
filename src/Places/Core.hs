@@ -8,10 +8,9 @@ import Data.List
 import Places.CsvInput.Parser as Csv
 import Places.Class.Data
 
--- TAODEBUG:
-readInput :: String -> IO ([[String]])
+-- | Read in input CSV file and convert them into
+-- a list of [Place]
+readInput :: String -> IO ([Place])
 readInput path = do
-  csv <- Csv.readCSV path
-  let join = intercalate ","
-    in putStrLn $ join $ head csv
-  return csv
+  places <- Csv.readPlaceCSV path
+  return places
