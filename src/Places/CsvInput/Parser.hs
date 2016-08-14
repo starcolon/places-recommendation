@@ -18,13 +18,22 @@ readCSV path = do
 
 
 -- | Convert a list of values to a [Place] data
-toPlace :: [String] -> Place
+toPlace :: [String] -> Maybe Place
 toPlace ns = PlaceData.fromList ns
+
+
+-- | Filter only valid [Place] out of the list of [Maybe Place]
+filterValid :: [Maybe Place] -> [Place]
+filterValid ((Just p):ps) = p:(filterValid ps)
+filterValid (Nothing:ps)  = filterValid ps
+filterValid []            = []
 
 
 readPlaceCSV :: String -> IO ([Place])
 readPlaceCSV path = do
   csv <- readCSV path
-  let places = map toPlace csv
-    in return places
+  let { places  = map toPlace csv
+      ; places' = filterValid places
+    }
+    in return places'
   

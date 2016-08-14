@@ -38,21 +38,22 @@ showPlace p = let { name'     = name p
                   ; line      = [name', "(", cate', ") in ", location']
               } in intercalate " " line
 
-fromList :: [String] -> Place
-fromList ns = 
-  Place { address     = ns !! 0
-        , category    = ns !! 1
-        , _id         = read (ns !! 2) :: Integer
-        , lat         = read (ns !! 3) :: Double
-        , lng         = read (ns !! 4) :: Double
-        , location    = ns !! 5
-        , name        = ns !! 6
-        , originalId  = read (ns !! 7) :: Integer
-        , polarity    = ns !! 8
-        , subCategory = ns !! 9
-        , details     = ns !! 10
-        , reviews     = ns !! 11
-  }
+fromList :: [String] -> Maybe Place
+fromList ns = if length ns < 12 
+  then Nothing
+  else Just Place { address     = ns !! 0
+                  , category    = ns !! 1
+                  , _id         = read (ns !! 2) :: Integer
+                  , lat         = read (ns !! 3) :: Double
+                  , lng         = read (ns !! 4) :: Double
+                  , location    = ns !! 5
+                  , name        = ns !! 6
+                  , originalId  = read (ns !! 7) :: Integer
+                  , polarity    = ns !! 8
+                  , subCategory = ns !! 9
+                  , details     = ns !! 10
+                  , reviews     = ns !! 11
+      }
 
 
 
