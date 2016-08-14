@@ -5,5 +5,5 @@ import Places.Core as Pl
 
 main :: IO()
 main = do
-  csv <- Pl.readInput "./data/amsterdam-attraction.csv"
+  places <- Pl.readInput "./data/amsterdam-attraction.csv"
   return ()

@@ -6,6 +6,7 @@ module Places.Class.Data (
 
 ) where
 
+import Data.List
 
 -- address,category,id,lat,lng,location,
 -- name,originalId,polarity,subCategory,
@@ -26,7 +27,8 @@ data Place =
         }
 
 instance Show Place where
-  show = showPlace
+  show            = showPlace
+  showList places = (++) $ intercalate "\n" (map show places)
 
 
 showPlace :: Place -> String
