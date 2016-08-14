@@ -1,7 +1,9 @@
 module Main where
 
-import Places.Core
+{- Ideally, Main just needs to includes only {Place.Core} -}
+import Places.Core as Pl
 
 main :: IO()
 main = do
-  error "TAOTODO: Implement this"
+  csv <- Pl.readInput "./data/amsterdam-attraction.csv"
+  return ()

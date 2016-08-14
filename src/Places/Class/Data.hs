@@ -1,4 +1,8 @@
-module Places.Class.Data where
+module Places.Class.Data (
+
+  Place
+
+) where
 
 -- address,category,id,lat,lng,location,
 -- name,originalId,polarity,subCategory,
@@ -17,3 +21,4 @@ data Place = Place {
 , details     :: String
 , reviews     :: String
 }
+
