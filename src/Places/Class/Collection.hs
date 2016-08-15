@@ -3,18 +3,14 @@ module Places.Class.Collection where
 import Data.List
 import Data.Trees.KdTree
 
--- | Mapping of places and their geospatial location
-class PlaceMap m where
-
-  -- Filtering the places with a boolean predicate
-  filter :: m -> (p -> Bool) -> m
-
-
--- | Implementation of Places
-instance PlaceMap [Place] where
-  filter = filterPlaces
+-- | Interface design of Indexed collection of [Place]
+class IndexedPlaceList m where
+  indexes  :: m -> [Int]
+  toList   :: m -> [Place]
+  fromList :: [Place] -> m
 
 
--- | Filter a list of [Place]
-filterPlaces :: Place p => [p] -> (p -> Bool) -> [p]
-filterPlaces places f = filter f places
+instance IndexedPlaceList [Place] where
+  indexes _       = []
+  toList places   = places
+  fromList places = IndexedPlaceList places
