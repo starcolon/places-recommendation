@@ -1,14 +1,16 @@
 module Places.Class.Collection where
 
 import Data.List
+import Data.HashMap.Strict
 import Data.Trees.KdTree as Kd
 import Places.Class.Data
 
--- | Interface design of Indexed collection of [Place]
-class IndexedPlaceList m where
-  indexes  :: m -> [Int]
-  toList   :: m -> [Place]
-  fromList :: [Place] -> m
+class Groupable a where
+  groupBy :: b -> a -> HashMap b a
+
+class Filterable a where
+  takeIf    :: (b -> Bool) -> a -> a
+  takeWhile :: (b -> Bool) -> a -> a
 
 
 -- | Implements [Place] as a KdTree's [Point] instance
@@ -19,4 +21,4 @@ instance Kd.Point Place where
   coord _ p   = error "Lat/Lng coordinate out of range"
   dist2 p1 p2 = error "TAOTODO: Implement a geospatial distance"
 
-
+newtype Places = KdTree Place
