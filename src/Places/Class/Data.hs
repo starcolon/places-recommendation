@@ -1,6 +1,6 @@
 module Places.Class.Data (
 
-  Place,
+  Place(..),
   showPlace,
   fromList
 
