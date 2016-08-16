@@ -4,9 +4,10 @@ import Data.List
 import Data.HashMap.Strict
 import Data.Trees.KdTree as Kd
 import Places.Class.Data
+import Places.Geo.Utils
 
-class Groupable a where
-  groupBy :: b -> a -> HashMap b a
+class Groupable a where -- TAOTODO: Need to redesign
+  groupBy :: b -> a -> HashMap b a 
 
 class Filterable a where
   takeIf    :: (b -> Bool) -> a -> a
@@ -19,6 +20,8 @@ instance Kd.Point Place where
   coord 0 p   = lat p
   coord 1 p   = lng p
   coord _ p   = error "Lat/Lng coordinate out of range"
-  dist2 p1 p2 = error "TAOTODO: Implement a geospatial distance"
+  dist2 p1 p2 = distance (lat p1, lng p1) (lat p2, lng p2)
+
 
 newtype Places = KdTree Place
+
