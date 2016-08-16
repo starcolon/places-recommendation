@@ -6,14 +6,6 @@ import Data.Trees.KdTree as Kd
 import Places.Class.Data
 import Places.Geo.Utils
 
-class Groupable a where -- TAOTODO: Need to redesign
-  groupBy :: b -> a -> HashMap b a 
-
-class Filterable a where
-  takeIf    :: (b -> Bool) -> a -> a
-  takeWhile :: (b -> Bool) -> a -> a
-
-
 -- | Implements [Place] as a KdTree's [Point] instance
 instance Kd.Point Place where
   dimension _ = 2
@@ -23,5 +15,13 @@ instance Kd.Point Place where
   dist2 p1 p2 = distance (lat p1, lng p1) (lat p2, lng p2)
 
 
-newtype Places = KdTree Place
+class Groupable a where -- TAOTODO: Need to redesign
+  group :: a -> HashMap b a 
+  join  :: HashMap b a -> HashMap b a -> HashMap b a
+
+
+class Filterable a where
+  takeIf    :: (b -> Bool) -> a -> a
+  takeWhile :: (b -> Bool) -> a -> a
+
 
