@@ -1,4 +1,7 @@
-module Places.Class.Definition where
+module Places.Class.Generic (
+  Groupable
+, Filterable
+) where
 
 import Data.HashMap.Strict
 
