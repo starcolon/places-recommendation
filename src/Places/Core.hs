@@ -8,7 +8,7 @@ import Data.CSV
 import Data.List
 import Places.CsvInput.Parser as Csv
 import Places.Class.Data
-import Places.Class.Collection
+import Places.Class.Definition
 
 -- | Read in input CSV file and convert them into
 -- a list of [Place]
