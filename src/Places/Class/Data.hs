@@ -1,8 +1,9 @@
 module Places.Class.Data (
 
-  Place(..),
-  showPlace,
-  fromList
+  Place(..)
+, PlaceList(..)
+, showPlace
+, fromList
 
 ) where
 

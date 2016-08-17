@@ -1,11 +1,11 @@
 module Places.Class.Generic (
-  Groupable
-, Filterable
+  Groupable(..)
+, Filterable(..)
 ) where
 
 import Data.HashMap.Strict
 
-class Groupable a where
+class Groupable a where 
   group :: (a -> b) -> a -> HashMap b a 
   join  :: HashMap b a -> HashMap b a -> HashMap b a
 

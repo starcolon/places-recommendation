@@ -9,3 +9,6 @@ instance Filterable PlaceList where
 
 takePlaceListIf :: (Place -> Bool) -> PlaceList -> PlaceList
 takePlaceListIf f p = p -- TAOTODO: Implement this
+
+takePlaceListWhile :: (Place -> Bool) -> PlaceList -> PlaceList
+takePlaceListWhile f p = p -- TAOTODO:
