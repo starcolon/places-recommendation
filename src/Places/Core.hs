@@ -24,6 +24,9 @@ readInputs paths = do
   places <- Csv.readPlaceCSVs paths
   return places
 
+-- | Construct a KD Tree from the given list of [Place]
+toPlaceList :: [Place] -> IO (PlaceList)
+toPlaceList _ = error "TAOTODO: Implement this part"
 
 
 

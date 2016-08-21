@@ -4,11 +4,12 @@ module Places.Class.Generic (
 ) where
 
 import Data.HashMap.Strict
+import Places.Class.Data
 
 class Groupable a where 
-  group :: (a -> b) -> a -> HashMap b a 
-  join  :: HashMap b a -> HashMap b a -> HashMap b a
+  group :: (a -> Place) -> a -> HashMap Place a 
+  join  :: HashMap Place a -> HashMap Place a -> HashMap Place a
 
 class Filterable a where
-  takeIf    :: (b -> Bool) -> a -> a
-  takeWhile :: (b -> Bool) -> a -> a
+  takeIf    :: (Place -> Bool) -> a -> a
+  takeWhile :: (Place -> Bool) -> a -> a
