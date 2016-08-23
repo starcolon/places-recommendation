@@ -7,9 +7,9 @@ module Places.Class.Data (
 
 ) where
 
-import Data.List
-import Data.Trees.KdTree as Kd hiding (fromList)
-import Places.Geo.Utils
+import           Data.List
+import qualified Data.Trees.KdTree as Kd-- hiding (fromList)
+import           Places.Geo.Utils
 
 -- address,category,id,lat,lng,location,
 -- name,originalId,polarity,subCategory,
@@ -41,8 +41,8 @@ instance Kd.Point Place where
   coord _ p   = error "Lat/Lng coordinate out of range"
   dist2 p1 p2 = distance (lat p1, lng p1) (lat p2, lng p2)
 
--- | Let's call a KD Tree of [Place] a [PlaceList]
-newtype PlaceList = KdTree Place
+
+type PlaceList = Kd.KdTree Place
 
 
 showPlace :: Place -> String
@@ -69,5 +69,7 @@ fromList ns = if length ns < 12
                   , reviews     = ns !! 11
       }
 
+toPlaceList :: [Place] -> PlaceList
+toPlaceList ns = Kd.fromList ns
 
 
