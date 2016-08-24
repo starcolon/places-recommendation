@@ -4,15 +4,21 @@ import           Data.Monoid
 import           Places.Class.Data
 import qualified Data.Trees.KdTree as Kd-- hiding (fromList)
 
-newtype PlaceTree = KdTree Place
+newtype PlaceTree = PlaceTree (Kd.KdTree Place)
 
 instance PlaceList PlaceTree where
   closest  = findClosest
   whichAre = filterCate
 
+-- | Find [N] closest neighbors of a [Place]
+findClosest :: Int -> Place -> PlaceTree -> PlaceTree
+findClosest n p (PlaceTree this) = 
+  let ps = Kd.toList this
+    in PlaceTree $ Kd.fromList $ take n ps
 
-findClosest :: Int -> Place -> PlaceTree
-findClosest = error "TAOTODO: Implement this"
-
-filterCate :: String -> PlaceTree
-filterCate = error "TAOTODO: Implement this"
+-- | Filter [Place] from the tree of which category matches the argument
+filterCate :: String -> PlaceTree -> PlaceTree
+filterCate c (PlaceTree this) = 
+  let { ps  = Kd.toList this
+      ; ps' = filter (\p -> category p == c) ps }
+    in PlaceTree $ Kd.fromList $ ps'
