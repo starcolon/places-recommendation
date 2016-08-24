@@ -31,7 +31,9 @@ data Place =
 
 -- | Generic [PlaceList] as continuation
 class PlaceList a where
-  closest  :: Int -> a
+  -- List [n] closest neighbors from a [Place]
+  closest  :: Int -> Place -> a
+  -- Filter [Place] from the list of which @category matches the argument
   whichAre :: String -> a
 
 
