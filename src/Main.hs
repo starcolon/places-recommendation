@@ -14,7 +14,9 @@ main = do
                 ,"./data/rome-attraction.csv"
                 ,"./data/tuscany-attraction.csv"
                ]
-  -- places <- Pl.readInput "./data/amsterdam-attraction.csv"
-  places <- Pl.readInputs inputs
-  _      <- putStrLn $ show places
+  -- Prepare data
+  places  <- Pl.readInputs inputs
+  _       <- putStrLn $ show places
+  places' <- 
+  -- TAOTODO: Convert List[Places] -> [PlaceList]
   return ()

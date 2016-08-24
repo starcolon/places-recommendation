@@ -29,9 +29,16 @@ data Place =
         , reviews     :: String
         }
 
+-- | Generic [PlaceList] as continuation
+class PlaceList where
+  closest  :: Int -> PlaceList
+  whichAre :: String -> PlaceList
+
+
 instance Show Place where
   show            = showPlace
   showList places = (++) $ intercalate "\n" (map show places)
+
 
 -- | Implements [Place] as a KdTree's [Point] instance
 instance Kd.Point Place where
@@ -41,8 +48,6 @@ instance Kd.Point Place where
   coord _ p   = error "Lat/Lng coordinate out of range"
   dist2 p1 p2 = distance (lat p1, lng p1) (lat p2, lng p2)
 
-
-type PlaceList = Kd.KdTree Place
 
 
 showPlace :: Place -> String
@@ -69,7 +74,5 @@ fromList ns = if length ns < 12
                   , reviews     = ns !! 11
       }
 
-toPlaceList :: [Place] -> PlaceList
-toPlaceList ns = Kd.fromList ns
 
 
