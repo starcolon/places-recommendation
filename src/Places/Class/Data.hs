@@ -30,9 +30,9 @@ data Place =
         }
 
 -- | Generic [PlaceList] as continuation
-class PlaceList where
-  closest  :: Int -> PlaceList
-  whichAre :: String -> PlaceList
+class PlaceList a where
+  closest  :: Int -> a
+  whichAre :: String -> a
 
 
 instance Show Place where
