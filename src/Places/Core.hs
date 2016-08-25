@@ -15,7 +15,6 @@ import Places.Class.Instance
 readInput :: String -> IO [Place]
 readInput path = do
   places <- Csv.readPlaceCSV path
-  -- TAOTODO: Make a [PlaceList]
   return places
 
 -- | Read in multiple input CSV files

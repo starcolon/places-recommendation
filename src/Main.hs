@@ -17,5 +17,4 @@ main = do
                ]
   places  <- Pl.readInputs inputs
   _       <- putStrLn $ show places
-  -- TAOTODO: Convert List[Places] -> [PlaceList]
   return ()

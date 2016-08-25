@@ -10,6 +10,9 @@ instance PlaceList PlaceTree where
   closest  = findClosest
   whichAre = filterCate
 
+instance Show PlaceTree where
+  show (PlaceTree t) = show $ Kd.toList t
+
 -- | Find [N] closest neighbors of a [Place]
 findClosest :: Int -> Place -> PlaceTree -> PlaceTree
 findClosest n p (PlaceTree this) = 
