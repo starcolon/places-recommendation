@@ -11,7 +11,13 @@ instance PlaceList PlaceTree where
   whichAre = filterCate
 
 instance Show PlaceTree where
+  -- show [PlaceTree] will result in showList [List[Place]]
   show (PlaceTree t) = show $ Kd.toList t
+
+-- | Create a new [PlaceTree] from a List of [Place]
+placeTree :: [Place] -> PlaceTree
+placeTree ps = PlaceTree $ Kd.fromList ps
+
 
 -- | Find [N] closest neighbors of a [Place]
 findClosest :: Int -> Place -> PlaceTree -> PlaceTree

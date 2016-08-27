@@ -8,7 +8,7 @@ import Data.CSV
 import Data.List
 import Places.CsvInput.Parser as Csv
 import Places.Class.Data
-import Places.Class.Instance
+import Places.Class.Instance as I
 
 -- | Read in input CSV file and convert them into
 -- a list of [Place]
@@ -23,3 +23,6 @@ readInputs paths = do
   places <- Csv.readPlaceCSVs paths
   return places
 
+-- | Convert a List of [Place] to a [PlaceTree] class
+placeTree :: [Place] -> PlaceTree
+placeTree = I.placeTree
