@@ -11,6 +11,12 @@ You need `Haskell` with `Cabal` to run this.
 - [x] [Haskell](http://haskell.org/)
 - [x] [Cabal](https://www.haskell.org/cabal/)
 
+Collect all required packages by running:
+
+```bash
+$ cabal install --only-dependencies
+```
+
 ## Data
 
 This repository uses a tourist attraction dataset 

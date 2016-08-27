@@ -8,20 +8,21 @@ import Data.CSV
 import Data.List
 import Places.CsvInput.Parser as Csv
 import Places.Class.Data
+import Places.Class.Instance as I
 
 -- | Read in input CSV file and convert them into
 -- a list of [Place]
-readInput :: String -> IO ([Place])
+readInput :: String -> IO [Place]
 readInput path = do
   places <- Csv.readPlaceCSV path
   return places
 
 -- | Read in multiple input CSV files
-readInputs :: [String] -> IO ([Place])
+readInputs :: [String] -> IO [Place]
 readInputs paths = do
   places <- Csv.readPlaceCSVs paths
   return places
 
-
-
-
+-- | Convert a List of [Place] to a [PlaceTree] class
+placeTree :: [Place] -> PlaceTree
+placeTree = I.placeTree

@@ -1,12 +1,15 @@
 module Places.Class.Data (
 
-  Place,
-  showPlace,
-  fromList
+  Place(..)
+, PlaceList(..)
+, showPlace
+, fromList
 
 ) where
 
-import Data.List
+import           Data.List
+import qualified Data.Trees.KdTree as Kd-- hiding (fromList)
+import           Places.Geo.Utils
 
 -- address,category,id,lat,lng,location,
 -- name,originalId,polarity,subCategory,
@@ -26,9 +29,27 @@ data Place =
         , reviews     :: String
         }
 
+-- | Generic [PlaceList] as continuation
+class PlaceList a where
+  -- List [n] closest neighbors from a [Place]
+  closest  :: Int -> Place -> a -> a
+  -- Filter [Place] from the list of which @category matches the argument
+  whichAre :: String -> a -> a
+
+
 instance Show Place where
   show            = showPlace
   showList places = (++) $ intercalate "\n" (map show places)
+
+
+-- | Implements [Place] as a KdTree's [Point] instance
+instance Kd.Point Place where
+  dimension _ = 2
+  coord 0 p   = lat p
+  coord 1 p   = lng p
+  coord _ p   = error "Lat/Lng coordinate out of range"
+  dist2 p1 p2 = distance (lat p1, lng p1) (lat p2, lng p2)
+
 
 
 showPlace :: Place -> String
