@@ -15,6 +15,6 @@ main = do
                 ,"./data/rome-attraction.csv"
                 ,"./data/tuscany-attraction.csv"
                ]
-  places  <- Pl.readInputs inputs
+  places  <- Pl.readInputsAsTree inputs
   _       <- putStrLn $ show places
   return ()

@@ -1,6 +1,7 @@
 module Places.Core (
   readInput
 , readInputs
+, readInputsAsTree
 ) where
 
 import Text.ParserCombinators.Parsec
