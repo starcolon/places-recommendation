@@ -23,6 +23,13 @@ readInputs paths = do
   places <- Csv.readPlaceCSVs paths
   return places
 
+-- | Read in multiple input CSV files as a [PlaceTree] class
+readInputsAsTree :: [String] -> IO PlaceTree
+readInputsAsTree paths = do
+  places <- Csv.readPlaceCSVs paths
+  let tree = I.placeTree places
+    in return tree
+
 -- | Convert a List of [Place] to a [PlaceTree] class
 placeTree :: [Place] -> PlaceTree
 placeTree = I.placeTree
