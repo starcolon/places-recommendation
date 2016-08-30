@@ -33,6 +33,8 @@ data Place =
 class PlaceList a where
   -- List [n] closest neighbors from a [Place]
   closest  :: Int -> Place -> a -> a
+  -- List closest neighbors within the range
+  ranged   :: Double -> Place -> a -> a
   -- Filter [Place] from the list of which @category matches the argument
   whichAre :: String -> a -> a
 

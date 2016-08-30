@@ -9,4 +9,9 @@ distance (i1,j1) (i2,j2) =
       ; dlng2 = dlng ** 2
   } in sqrt $ dlat2 + dlng2
 
+-- | Test whether a two locations lie within a specified distance
+-- from each other
+inRange :: Double -> (Double, Double) -> (Double, Double) -> Bool
+inRange d p1 p2 = d > distance p1 p2
+
 

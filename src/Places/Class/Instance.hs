@@ -2,12 +2,14 @@ module Places.Class.Instance where
 
 import           Data.Monoid
 import           Places.Class.Data
+import           Places.Geo.Utils
 import qualified Data.Trees.KdTree as Kd-- hiding (fromList)
 
 newtype PlaceTree = PlaceTree (Kd.KdTree Place)
 
 instance PlaceList PlaceTree where
-  closest  = findClosest
+  closest  = findNClosest
+  ranged   = findClosest
   whichAre = filterCate
 
 instance Show PlaceTree where
@@ -20,10 +22,19 @@ placeTree ps = PlaceTree $ Kd.fromList ps
 
 
 -- | Find [N] closest neighbors of a [Place]
-findClosest :: Int -> Place -> PlaceTree -> PlaceTree
-findClosest n p (PlaceTree this) = 
+findNClosest :: Int -> Place -> PlaceTree -> PlaceTree
+findNClosest n p (PlaceTree this) = 
   let ps = Kd.toList this
     in PlaceTree $ Kd.fromList $ take n ps
+
+-- | Find closest neighbors of a [Place] which lie within 
+-- a specified range
+findClosest :: Double -> Place -> PlaceTree -> PlaceTree
+findClosest d p (PlaceTree this) = 
+  let pos      = (lat p, lng p)
+      ps       = Kd.toList this
+      inRange' = \d a b -> inRange d a (lat b, lng b)
+    in placeTree $ takeWhile (inRange' d pos) ps
 
 -- | Filter [Place] from the tree of which category matches the argument
 filterCate :: String -> PlaceTree -> PlaceTree
