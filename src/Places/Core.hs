@@ -34,3 +34,8 @@ readInputsAsTree paths = do
 -- | Convert a List of [Place] to a [PlaceTree] class
 placeTree :: [Place] -> PlaceTree
 placeTree = I.placeTree
+
+-- | Find the nearest [PlaceTree] 
+-- Function accepts @distance in metre, @lat, and @long
+nearby :: [Double] -> [Double] -> [Double] -> PlaceTree
+nearby = error "TAOTODO: To be implemented"
