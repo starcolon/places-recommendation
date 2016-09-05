@@ -18,10 +18,10 @@ main = do
   places  <- Pl.readInputsAsTree inputs
   _       <- putStrLn $ show places
   putStrLn "==========================="
-  print "Where are you (e.g. Sé de Lisboa)?" -- TAOTODO: To be decoded with Google Geocoding API
+  print "Where are you (e.g. Torino)?" -- TAOTODO: To be decoded with Google Geocoding API
   loc     <- getLine
   print "How far in metres from your location you want to explore?"
-  d      <- getLine
+  d       <- getLine
   let dist = read d :: Integer
   print "OK, here is the list of what we found:"
 

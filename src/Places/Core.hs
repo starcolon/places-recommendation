@@ -37,5 +37,6 @@ placeTree = I.placeTree
 
 -- | Find the nearest [PlaceTree] 
 -- Function accepts @distance in metre, @lat, and @long
-nearby :: [Double] -> [Double] -> [Double] -> PlaceTree
-nearby = error "TAOTODO: To be implemented"
+nearby :: Double -> Double -> Double -> PlaceTree -> PlaceTree
+nearby d i j places = findClosest d p places
+  where p = placeByLoc i j

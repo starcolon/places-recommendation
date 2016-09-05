@@ -4,6 +4,7 @@ module Places.Class.Data (
 , PlaceList(..)
 , showPlace
 , fromList
+, placeByLoc
 
 ) where
 
@@ -28,6 +29,22 @@ data Place =
         , details     :: String
         , reviews     :: String
         }
+
+placeByLoc :: Double -> Double -> Place
+placeByLoc i j = Place {
+  address  = ""
+, category = ""
+, _id      = 0
+, lat      = i
+, lng      = j
+, location = ""
+, name     = ""
+, originalId = 0
+, polarity = ""
+, subCategory = ""
+, details  = ""
+, reviews  = ""
+}
 
 -- | Generic [PlaceList] as continuation
 class PlaceList a where
